@@ -355,61 +355,15 @@ Analisa: Proses induk mencetak pesan yang menyatakan identitasnya sebagai "I am 
 
 Source Code
 
-    #include <stdio.h>
-    #include <stdlib.h>
-    #include <unistd.h>
-    #include <sys/wait.h>
+![App Screenshot](assets/img/matrik01.png)
 
-    #define ROWS 4
-    #define COLS 4
+![App Screenshot](assets/img/matriks02.png)
 
-    void printMatrix(int matrix[ROWS][COLS]) {
-        for (int i = 0; i < ROWS; i++) {
-            for (int j = 0; j < COLS; j++) {
-                printf("%d ", matrix[i][j]);
-            }
-            printf("\n");
-        }
-    }
-
-    int main() {
-        int matrix[ROWS][COLS];
-        int skalar = 2;
-
-        for (int i = 0; i < ROWS; i++) {
-            for (int j = 0; j < COLS; j++) {
-                matrix[i][j] = i * j;
-            }
-        }
-
-        printf("Matriks Awal:\n");
-        printMatrix(matrix);
-
-        pid_t pid = fork();
-
-        if (pid == 0) {
-            printf("\nProses Anak - Matriks Hasil:\n");
-            for (int i = 0; i < ROWS; i++) {
-                for (int j = 0; j < COLS; j++) {
-                    matrix[i][j] *= skalar;
-                    printf("%d ", matrix[i][j]);
-                }
-                printf("\n");
-            }
-        } else if (pid > 0) {
-            wait(NULL);
-            printf("\nProses Induk Selesai.\n");
-        } else {
-            fprintf(stderr, "Fork gagal.\n");
-            return 1;
-        }
-
-        return 0;
-    }
+![App Screenshot](assets/img/matriks03.png)
 
 Output
 
-![App Screenshot](assets/img/t2.png)
+![App Screenshot](assets/img/matriksOutput.png)
 
 Analisa : kode diatas merupakan sebuah program perkalian 2 matriks [4 x 4] dalam bahasa C yang memanfaatkan fork().
 
