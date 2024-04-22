@@ -215,7 +215,7 @@ lalu **vonda** dengan spesifikasi **13th Gen Intel(R) Core(TM) i5-13500H, 2600 M
 
 ### 8. Kesimpulan
 
-Dari percobaan kelompok kami, bisa ditarik kesimpulan bahwa Perbandingan antara FLOPS dan IOPS mempunyai kesamaan yaitu menguji CPU untuk proses yang berhubungan dengan numberik perbedaannya ialah terdapat pada type data dari keduanya untuk FLOPS sesuai namanya Floating Operation System dan IOPS juga sesuai namanya yaitu Integer Operation System.
+Dari percobaan kelompok kami, bisa ditarik kesimpulan bahwa Perbandingan antara FLOPS dan IOPS mempunyai kesamaan yaitu menguji CPU untuk proses yang berhubungan dengan numberik perbedaannya ialah terdapat pada type data dari keduanya untuk FLOPS sesuai namanya Floating Operation Sistem dan IOPS juga sesuai namanya yaitu Integer Operation Sistem.
 
 ## Referensi
 
