@@ -19,31 +19,57 @@
 ## Daftar Isi
 
 [1. Bash Tutorial](#1-bash-tutorial)
+
 [2. Bash Variable](#bash---variable)
+
 [3. Bash Loop File](#bash---loop-file)
+
 [4. Bash Comments](#bash---comments)
+
 [5. Bash Arrays](#bash---arrays)
+
 [6. Bash Expansion](#bash---expansion)
+
 [7. Bash Conditional Expression](#bash---conditional-expression)
+
 [8. Bash Case Statement](#bash---case-statements)
+
 [9. Bash Special Character](#bash---special-characters)
+
 [10. Bash If elif else](#bash---if-elif-else)
+
 [11. Bash Loops](#bash---loops)
+
 [12. Bash Append Strinng](#bash---append-string)
+
 [13. Bash Functions](#bash---functions)
+
 [14. Bash Append Strings](#bash---append-string-1)
+
 [15. Bash Operators](#bash---operators)
+
 [16. Bash Number Comparation](#bash---numbers-comparasion)
+
 [17. Bash Check Directory](#bash---check-directory)
+
 [18. Bash File Name](#bash---file-name)
+
 [19. Bash Split String](#bash---split-string)
+
 [20. Bash String Length](#bash---string-length)
+
 [21. Bash bashrc](#bash---bashrc)
+
 [22. Bash Ternary Operator](#bash---ternary-operator)
+
 [23. Bash Lowercase](#bash---lowercase)
+
 [24. Bash Uppercase](#bash---uppercase)
+
 [25. Bash Substring](#bash---substring)
+
 [26. Bash Variable Set](#bash---variable-set)
+
 [27. Bash Iterate Nos](#bash---iterate-nos)
 
 ## **Bash Tutorial**
