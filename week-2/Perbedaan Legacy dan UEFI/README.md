@@ -30,6 +30,10 @@ BIOS merupakan singkatan dari Basic Input Output System. merupakan suatu softwar
 
 ![App Screenshot](assets/img/bios.png)
 
+**Flowchart**
+
+![App Screenshot](assets/img/uefi%20dan%20legacy.png)
+
 **1. Definisi**
 Unified Extensible Firmware Interface (UEFI) adalah proses booting pada komputer modern dengan kemampuan lebih canggih dibanding sistem Legacy. UEFI menggunakan firmware URFI untuk menyimpan EFI Service Partitions saat proses booting berlangsung.
 Sementara, Legacy adalah proses booting komputer dengan firmware BIOS yang lebih lama dan tradisional.
