@@ -25,3 +25,5 @@
 - [week-5](week-5)
 - [week-6](week-6)
 - [week-7-UTS](week-7-UTS)
+- [week-8](week-8)
+- [week-9](week-9)
