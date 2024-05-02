@@ -176,8 +176,10 @@ Syntax :
 
 ![App Screenshot](assets/img/variable/variable-4.png)
 
-Output: `Inside Function Age: 40
-Script Age: 40`
+Output:
+
+    Inside Function Age: 40
+    Script Age: 40
 
 **Bash variabel Lokal**
 
@@ -194,8 +196,9 @@ Syntax :
 ![App Screenshot](assets/img/variable/variable-5.png)
 
 Output :
-`Local Variable Age: 25
-Global Age: 40`
+
+    Local Variable Age: 25
+    Global Age: 40
 
 **Variable Typing**
 Skrip Bash bukan bahasa yang diketik, namun Anda dapat mendeklarasikan variabel dengan tipe data menggunakan perintah mendeklarasikan Berdasarkan tipe variabel, ini memungkinkan tipe data.
