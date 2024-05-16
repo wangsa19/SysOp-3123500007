@@ -19,6 +19,7 @@
 ### Table content
 
 - [Overview](#overview)
+- [Threads](#threads)
 - [Multicore Programming](#multicore-programming)
 - [Multithreading Models](#multithreading-models)
   - [Many-to-One](#many-to-one)
@@ -29,6 +30,7 @@
 - [Threading Issues](#threading-issues)
 - [Signal handling](#signal-handling)
 - [Operating System Examples](#operating-system-examples)
+- [Q&A](#)
 - [Referensi](#referensi)
 
 # Threads
@@ -354,6 +356,51 @@ Saat memanggil clone(), Anda dapat mengatur bendera yang mengontrol perilaku tug
 
 struct task_struct adalah struktur data yang mewakili tugas (proses atau thread) di Linux.
 Ini berisi informasi tentang tugas, termasuk ID tugas, tumpukan, status, dan banyak lagi.
+
+## Q&A
+
+1. Berikan tiga contoh pemrograman di mana multithreading memberikan kinerja yang lebih baik daripada solusi single-threaded.
+
+   Server Web yang melayani setiap permintaan di threads terpisah. Misalnya, server web menerima permintaan klien untuk menampilkan halaman web, gambar, suara dan sebagainya. Server web mungkin memiliki beberapa klien yang mengakses secara bersamaan. Salah satu solusinya adalah menjalankan server sebagai satu proses yang menerima permintaan. Saat permintaan dibuat, server dapat membuat thread yang baru guna melayani permintaan tambahan. Aplikasi paralel seperti perkalian matriks di mana bagian-bagian berbeda dari matriks dapat dikerjakan secara paralel. Program GUI interaktif seperti debugger di mana threads digunakan untuk memantau input user, threads lain mewakili aplikasi yang sedang berjalan, dan threads ketiga memantau kinerja.
+
+2. Apa dua perbedaan antara user-level threads dan kernel-level threads ?
+
+   Dalam keadaan apa salah satu jenis lebih baik dari yang lain? Pada user-level threads didukung kernel serta diimplemetasikan dengan threads library , sedangkan kernel-level threads dikelola langsung oleh sistem operasi. Pada sistem yang menggunakan pemetaan M : 1 atau M : N, user threads menyediakan fasilitas untuk pembuatan threads, penjadwalan threads, dan manajemen threads tanpa dukungan dari kernel melalui threads library dan kernel (kernel space) menjadwalkan kernel threads. Kernel threads tidak perlu dikaitkan dengan suatu proses di mana setiap user threads adalah bagian dari suatu proses. Kernel threads umumnya lebih mahal untuk dirawat daripada user threads karena harus direpresentasikan dengan struktur data kernel. Pengaturan pada kernel-level threads dilakukan oleh sistem operasi, sehingga pembuatan dan pengaturan kernel-level threads lebih lambat dibandingkan user-level threads.
+
+3. Jelaskan tindakan yang dilakukan oleh kernel untuk beralih konteks antara kernel level threads.
+
+   Pada saat alih konteks terjadi, kernel akan menyimpan konteks dari proses lama kedalam PCB-nya dan mengisi konteks yang telah disimpan dari proses baru yang telah terjadual untuk berjalan. Pergantian waktu konteks adalah murni overhead, karena sistem ini melakukan pekerjaan yang tidak perlu. Kecepatannya bervariasi dari mesin ke mesin, bergantung pada kecepatan memori, jumlah register yang harus di copy, dan keberadaan instruksi khusus (seperti instruksi tunggal untuk mengisi atau menyimpan seluruh register). Pergantian konteks antara kernel threads biasanya membutuhkan penyimpanan nilai register CPU dari threads yang dialihkan dan mengembalikan register CPU dari threads baru yang dijadwalkan.
+
+4. Sumber daya apa yang digunakan saat threads dibuat?
+
+   Bagaimana mereka berbeda dari yang digunakan ketika suatu proses dibuat? Karena threads lebih kecil dari suatu proses, pembuatan threads biasanya menggunakan sumber daya yang lebih sedikit daripada pembuatan proses. Membuat suatu proses membutuhkan alokasi blok kontrol proses (PCB), struktur data yang agak besar. PCB mencakup peta memori, daftar file yang terbuka, dan variabel lingkungan. Mengalokasikan dan mengelola peta memori biasanya merupakan aktivitas yang paling memakan waktu. Menciptakan user atau kernel threads melibatkan pengalokasian struktur data kecil untuk menampung set register, stack, dan prioritas.
+
+5. Asumsikan bahwa sistem operasi memetakan thread tingkat pengguna ke kernel menggunakan model many-to-many dan pemetaan dilakukan melalui LWP. Selain itu, sistem ini memungkinkan pengembang untuk membuat threads realtime untuk digunakan dalam sistem real-time. Apakah perlu untuk mengikat threads real-time ke LWP? Jelaskan.
+
+   Iya. Pengaturan waktu sangat penting untuk aplikasi real-time. Jika threads ditandai sebagai real-time tetapi tidak terikat pada LWP, threads mungkin harus menunggu untuk dilampirkan ke LWP sebelum dijalankan. Pertimbangkan jika threads realtime sedang berjalan (dilampirkan ke LWP) dan kemudian dilanjutkan ke blok (yaitu harus melakukan I / O, telah didahului oleh threads real-time yang memiliki prioritas tinggi, dll.) Saat threads real-time diblokir, LWP yang dilampirkan telah ditugaskan ke threads lain. Ketika threads real-time telah dijadwalkan untuk berjalan kembali, threads tersebut harus menunggu terlebih dahulu untuk dilampirkan ke LWP. Dengan mengikat LWP ke threads real-time, Anda memastikan threads akan dapat berjalan dengan penundaan minimal setelah dijadwalkan
+
+Pertanyaan beserta jawaban :
+
+- What is the meaning of Thread Priority?
+
+Every thread has a priority. However, a higher priority also gets precedence in execution. However, it also depends on Thread Scheduler implementation which is OS dependent. It is possible to the change the priority of the thread, but it does not give assurance that higher priority thread will get executed first
+
+- How can multiple threads be controlled simultaneously?
+
+Multiple threads can be simultaneously controlled if they are created in a ThreadGroup object.
+
+- What is the difference between a user-level thread and a kernel-level thread?
+
+User-level threads (ULTs) and kernel-level threads (KLTs) differ in their management and resource allocation. ULTs are managed by user-space programs, not the OS, making them faster to create and manage due to less context switching. However, if one ULT blocks, all threads within the process block, as the OS sees only the process.
+On the other hand, KLTs are managed directly by the OS, allowing for better multitasking since a blocked thread doesn’t affect others in the same process. But, they require more overhead due to increased context switching and direct OS involvement.
+
+- What is the role of a semaphore in multithreading?
+
+A semaphore in multithreading is a synchronization tool used to control access to shared resources. It’s essentially a variable that maintains a count of available resources, or slots. When a thread wants to use a resource, it checks the semaphore. If the count is greater than zero, the thread decrements the count and proceeds. If the count is zero, the thread must wait until a slot becomes available. This mechanism prevents race conditions by ensuring that only one thread can modify the shared resource at any given time. Semaphores also help manage deadlocks, where two threads are waiting for each other to release resources.
+How can you ensure that threads are executed in a specific order?
+Thread execution order can be controlled using synchronization techniques. One common method is to use join(), which makes a thread wait until the completion of another. For instance, if we want Thread B to execute after Thread A, we call B.join() in A’s run method.
+Another approach involves semaphores. Semaphores maintain a set of permits; a thread can acquire a permit (if available) or release it back to the semaphore. If a permit isn’t available, the thread blocks until one is. By controlling the initial number of permits and their distribution among threads, we can dictate execution order.
+Lastly, we can use locks. Locks allow only one thread at a time to access a shared resource. By strategically placing locks, we can ensure that certain sections of code are executed by specific threads in a particular sequence.
 
 ## Referensi
 
