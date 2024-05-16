@@ -381,26 +381,27 @@ Ini berisi informasi tentang tugas, termasuk ID tugas, tumpukan, status, dan ban
 
 Pertanyaan beserta jawaban :
 
-- What is the meaning of Thread Priority?
+1. Apa yang dimaksud dengan Thread Priority?
 
-Every thread has a priority. However, a higher priority also gets precedence in execution. However, it also depends on Thread Scheduler implementation which is OS dependent. It is possible to the change the priority of the thread, but it does not give assurance that higher priority thread will get executed first
+Setiap thread memiliki prioritas. Namun, prioritas yang lebih tinggi juga diutamakan dalam eksekusi. Namun, itu juga tergantung pada implementasi Thread Scheduler yang bergantung pada OS. Dimungkinkan untuk mengubah prioritas utas, tetapi tidak memberikan jaminan bahwa utas prioritas yang lebih tinggi akan dieksekusi terlebih dahulu
 
-- How can multiple threads be controlled simultaneously?
+2. Bagaimana beberapa thread dapat dikontrol secara bersamaan?
 
-Multiple threads can be simultaneously controlled if they are created in a ThreadGroup object.
+Beberapa thread dapat dikontrol secara bersamaan jika dibuat dalam objek ThreadGroup.
 
-- What is the difference between a user-level thread and a kernel-level thread?
+3. Apa perbedaan antara thread tingkat pengguna dan thread tingkat kernel?
 
-User-level threads (ULTs) and kernel-level threads (KLTs) differ in their management and resource allocation. ULTs are managed by user-space programs, not the OS, making them faster to create and manage due to less context switching. However, if one ULT blocks, all threads within the process block, as the OS sees only the process.
-On the other hand, KLTs are managed directly by the OS, allowing for better multitasking since a blocked thread doesn’t affect others in the same process. But, they require more overhead due to increased context switching and direct OS involvement.
+User-level threads (ULTs) dan kernel-level threads (KLTs) berbeda dalam manajemen dan alokasi sumber daya. ULT dikelola oleh program ruang pengguna, bukan OS, membuatnya lebih cepat untuk dibuat dan dikelola karena pengalihan konteks yang lebih sedikit. Namun, jika satu blok ULT, semua utas dalam blok proses, karena OS hanya melihat prosesnya. Di sisi lain, KLT dikelola langsung oleh OS, memungkinkan multitasking yang lebih baik karena utas yang diblokir tidak memengaruhi orang lain dalam proses yang sama. Namun, mereka membutuhkan lebih banyak overhead karena peningkatan pengalihan konteks dan keterlibatan OS langsung.
 
-- What is the role of a semaphore in multithreading?
+4. Apa peran semaphore dalam multithreading?
 
-A semaphore in multithreading is a synchronization tool used to control access to shared resources. It’s essentially a variable that maintains a count of available resources, or slots. When a thread wants to use a resource, it checks the semaphore. If the count is greater than zero, the thread decrements the count and proceeds. If the count is zero, the thread must wait until a slot becomes available. This mechanism prevents race conditions by ensuring that only one thread can modify the shared resource at any given time. Semaphores also help manage deadlocks, where two threads are waiting for each other to release resources.
-How can you ensure that threads are executed in a specific order?
-Thread execution order can be controlled using synchronization techniques. One common method is to use join(), which makes a thread wait until the completion of another. For instance, if we want Thread B to execute after Thread A, we call B.join() in A’s run method.
-Another approach involves semaphores. Semaphores maintain a set of permits; a thread can acquire a permit (if available) or release it back to the semaphore. If a permit isn’t available, the thread blocks until one is. By controlling the initial number of permits and their distribution among threads, we can dictate execution order.
-Lastly, we can use locks. Locks allow only one thread at a time to access a shared resource. By strategically placing locks, we can ensure that certain sections of code are executed by specific threads in a particular sequence.
+Semaphore dalam multithreading adalah alat sinkronisasi yang digunakan untuk mengontrol akses ke sumber daya bersama. Ini pada dasarnya adalah variabel yang mempertahankan jumlah sumber daya yang tersedia, atau slot. Ketika thread ingin menggunakan sumber daya, ia memeriksa semaphore. Jika hitungan lebih besar dari nol, thread mengurangi hitungan dan melanjutkan. Jika hitungannya nol, utas harus menunggu hingga slot tersedia. Mekanisme ini mencegah kondisi balapan dengan memastikan bahwa hanya satu utas yang dapat memodifikasi sumber daya bersama pada waktu tertentu. Semaphore juga membantu mengelola kebuntuan, di mana dua utas saling menunggu untuk melepaskan sumber daya.
+
+5. Bagaimana Anda bisa memastikan bahwa thread dijalankan dalam urutan tertentu?
+
+Urutan eksekusi thread dapat dikontrol menggunakan teknik sinkronisasi. Salah satu metode umum adalah menggunakan join(), yang membuat thread menunggu sampai selesainya yang lain. Misalnya, jika kita ingin Thread B dieksekusi setelah Thread A, kita memanggil B.join() dalam metode run A.
+Pendekatan lain melibatkan semaphore. Semaphore mempertahankan seperangkat izin; Sebuah thread dapat memperoleh izin (jika tersedia) atau melepaskannya kembali ke semaphore. Jika izin tidak tersedia, utas akan diblokir sampai izin. Dengan mengontrol jumlah izin awal dan distribusinya di antara utas, kita dapat menentukan perintah eksekusi.
+Terakhir, kita bisa menggunakan kunci. Kunci hanya mengizinkan satu utas pada satu waktu untuk mengakses sumber daya bersama. Dengan menempatkan kunci secara strategis, kita dapat memastikan bahwa bagian kode tertentu dijalankan oleh utas tertentu dalam urutan tertentu.
 
 ## Referensi
 
