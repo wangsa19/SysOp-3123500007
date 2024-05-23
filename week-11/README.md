@@ -27,7 +27,7 @@
 
 ### FCFS Scheduling Algorithms
 
-![App Screenshot](assets/img/flowchart-fcfs.png)
+![App Screenshot](assets/img/flowchart-fcfs-l.png)
 
 Analisis :
 
@@ -41,14 +41,14 @@ Perhitungan Waktu untuk setiap proses yang diurutkan, program menghitung Complet
 
 ### Non-Preemptive Priority Scheduling (Highest Priority First) Algorithms
 
-![App Screenshot](assets/img/flowchart-priority.png)
+![App Screenshot](assets/img/flowchart-priority-l.png)
 
 Analisa :
 Algoritma Highest Priority First (HPF) adalah algoritma penjadwalan yang memilih proses dengan prioritas tertinggi untuk dieksekusi terlebih dahulu. Dalam versi non-preemptive, proses yang sedang berjalan tidak akan dihentikan sampai selesai. Program ini mengimplementasikan algoritma HPF untuk menjadwalkan proses berdasarkan prioritasnya.
 
 ### Round Robin Scheduling Algorithms
 
-![App Screenshot](assets/img/flowchart-round-robin.png)
+![App Screenshot](assets/img/flowchart-round-robin-l.png)
 
 Analisa :
 Algoritma Round Robin (RR) adalah algoritma penjadwalan preemptive yang membagi waktu CPU secara merata di antara semua proses dalam antrian siap, menggunakan interval waktu yang disebut Time Quantum. Proses yang tidak selesai dalam Time Quantum akan ditempatkan di akhir antrian siap.
